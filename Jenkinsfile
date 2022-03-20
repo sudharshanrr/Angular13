@@ -19,19 +19,19 @@ pipeline{
               git branch: 'main', credentialsId: 'gihubcredentialss', url: 'https://github.com/sudharshanrr/Angular13.git'
             }
         }
-        stage('Build image') {
-          steps {
-             sh "docker build -t sudharshanrr/aa ."
-          }
-        }
-        stage('Push to docker hub') {
-            steps {
-              withCredentials([string(credentialsId: 'dockerhubpassword', variable: 'dockerhub-password')]) {
-                sh "docker login -u sudharshanrr -p ${dockerhub-password}"
-              }
-              sh "docker push sudharshanrr/aa"
-            }
-        }
+//         stage('Build image') {
+//           steps {
+//              sh "docker build -t sudharshanrr/aa ."
+//           }
+//         }
+//         stage('Push to docker hub') {
+//             steps {
+//               withCredentials([string(credentialsId: 'dockerhubpassword', variable: 'dockerhub-password')]) {
+//                 sh "docker login -u sudharshanrr -p ${dockerhub-password}"
+//               }
+//               sh "docker push sudharshanrr/aa"
+//             }
+//         }
     }
 
 }
