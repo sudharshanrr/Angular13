@@ -20,11 +20,11 @@ pipeline{
               sh "npm i"
             }
         }
-//         stage('Build image') {
-//           steps {
-//              sh "docker build -t sudharshanrr/aa ."
-//           }
-//         }
+        stage('Build image') {
+          steps {
+             sh "docker build -t ddd ."
+          }
+        }
 //         stage('Push to docker hub') {
 //             steps {
 //               withCredentials([string(credentialsId: 'dockerhubpassword', variable: 'dockerhub-password')]) {
