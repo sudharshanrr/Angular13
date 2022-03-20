@@ -20,7 +20,9 @@ pipeline{
             }
         }
         stage('Build image') {
-                  sh "docker build -t sudharshanrr/aa ."
+          steps {
+             sh "docker build -t sudharshanrr/aa ."
+          }
         }
         stage('Push to docker hub') {
             steps {
