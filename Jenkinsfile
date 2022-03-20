@@ -21,7 +21,7 @@ pipeline{
         }
         stage('Build image') {
           steps {
-             sh "sudo docker build -t aa ."
+             sh "docker images"
           }
         }
 //         stage('Push to docker hub') {
