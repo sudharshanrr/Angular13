@@ -17,7 +17,6 @@ pipeline{
         stage('pull code') {
             steps {
               git branch: 'main', credentialsId: 'gihubcredentialss', url: 'https://github.com/sudharshanrr/Angular13.git'
-              sh "npm i"
             }
         }
         stage('Build image') {
