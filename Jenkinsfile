@@ -16,7 +16,7 @@ pipeline{
     stages {
         stage('pull code') {
             steps {
-              git branch: 'main', credentialsId: 'de4c2844-dce3-4e10-a792-82cc213ffff0', url: 'https://github.com/sudharshanrr/Angular13.git'
+              git branch: 'main', credentialsId: 'gihubcredentialss', url: 'https://github.com/sudharshanrr/Angular13.git'
             }
         }
         
