@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <h2>[SUDHARSHAN] Home Test for Angular Developer - Techchefs a Virtusa Company</h2>
+  <div>
+    <h4>P1</h4>
+    <p>String1: <input type="text" id="str1"></p>
+    <p>String2: <input type="text" id="str2"></p>
+    <button onclick="clickEvent()">Submit</button>
+    <p>output: <span id="exp1"></span></p>
+
+  </div>
+  <div>
+    <h4>P2</h4>
+    <p>Enter Id: <input type="text" id="userId"><button onclick="getEmail()">Search</button></p>
+    <p>EMAIL: <span id="output"></span></p>
+    <p>https://reqres.in/api/users/1: <span id="api1"></span></p>
+    <p>https://reqres.in/api/users/3: <span id="api3"></span></p>
+    <p>https://reqres.in/api/users/10: <span id="api10"></span></p>
+  </div>
+
+  <script>
+    //TASK1
+    function getFiteredString(str1, str2) {
+      for (let i = 0; i < str2.length; i++) {
+        let index = str1.indexOf(str2[i]);
+        if (index > -1) {
+          str1 = str1.split(str2[i]).join("");
+        }
+      }
+      const uniqueChars = [...new Set(str1)].join("");
+      //Note: here i have added 'null'  to display in html as null is not visble in UI.
+      return uniqueChars ? uniqueChars : "null";;
+    }
+
+    function clickEvent() {
+      const str1 = document.getElementById("str1").value;
+      const str2 = document.getElementById("str2").value;
+      const exp1 = getFiteredString(str1, str2);
+      const exp2 = getFiteredString(str2, str1);
+      document.getElementById("exp1").innerHTML = `${str1}, ${str2}=> ${exp1}, ${exp2}`;
+    }
+
+
+    //TASK2
+
+    const userAction = async (id) => {
+      const response = await fetch('https://reqres.in/api/users/' + id, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const myJson = await response.json();
+      return Promise.resolve(myJson.data);
+    }
+
+    Promise.all([userAction(1), userAction(3), userAction(10)]).then((data) => {
+      console.log(data);
+      data.forEach(user => {
+        document.getElementById('api' + user.id).innerHTML = user.email;
+      });
+    });
+
+
+    function getEmail() {
+      const userId = document.getElementById("userId").value;
+      userAction(userId).then((user) => {
+        document.getElementById('output').innerHTML = user?.email ? user.email : 'User Not Found...';
+      });
+    }
+
+  </script>
+
+</body>
+
+</html>
